@@ -105,8 +105,8 @@ CONTEXT_SETTINGS = {"max_content_width": 90}
     help="YAML configuration file, directory of YAML files ending in "
     ".yml|.yaml, URL of a configuration file, or Semgrep registry entry name."
     "\n\n"
-    "Use --config auto to automatically obtain rules tailored to this project. NOTE: This will report your project URL"
-    " to the Semgrep Registry."
+    "Use --config auto to automatically obtain rules tailored to this project; your project URL will be used to log in"
+    " to the Semgrep registry."
     "\n\n"
     "See https://semgrep.dev/docs/writing-rules/rule-syntax for information on configuration file format.",
 )
@@ -459,7 +459,7 @@ def cli(
         semgrep --config auto .
 
     This will automatically fetch rules for your project from the Semgrep Registry. NOTE: Using `--config auto` will
-    report your project URL to the Semgrep Registry.
+    log in to the Semgrep Registry with your project URL.
 
     For more information about Semgrep, go to https://semgrep.dev.
     """

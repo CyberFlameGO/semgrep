@@ -37,6 +37,7 @@ from semgrep.semgrep_types import Language
 from semgrep.util import is_config_suffix
 from semgrep.util import is_url
 from semgrep.util import terminal_wrap
+from semgrep.util import with_color
 from semgrep.verbose_logging import getLogger
 
 logger = getLogger(__name__)
@@ -286,16 +287,23 @@ class ConfigResolver:
         start_t = time.time()
         extra_headers: Dict[str, str] = {}
         if config_str == AUTO_CONFIG_KEY:
-            if self.project_url is not None:
-                extra_headers["X-Semgrep-Project"] = self.project_url
             logger.warning(
                 terminal_wrap(
                     "Auto config mode will use semgrep rules to scan your codebase and uses the Semgrep Registry"
                     " to generate recommended rules based on your languages and frameworks."
-                    " NOTE: This will report your project URL to the Semgrep Registry."
                     "\n"
                 ),
             )
+            if self.project_url is not None:
+                extra_headers["X-Semgrep-Project"] = self.project_url
+                logger.warning(
+                    with_color(
+                        "green",
+                        terminal_wrap(
+                            f"Logging in to the Semgrep Registry as project '{self.project_url}'...\n"
+                        ),
+                    )
+                )
             config = self._download_config(
                 f"{SEMGREP_URL}{AUTO_CONFIG_LOCATION}", extra_headers=extra_headers
             )

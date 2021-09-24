@@ -89,7 +89,7 @@ r2c will:
   * Encryption during transit and rest
   * Strict access control to data-storage systems
   * Application-security-policy requirements for third parties (e.g. cloud-service providers; see "data sharing" below)
-* Only correlate hashed data to input data when these inputs are already known to r2c (e.g. publicly available project URLs for open-source projects, or projects that use the `--config auto` option)
+* Only correlate hashed data to input data when these inputs are already known to r2c (e.g. publicly available project URLs for open-source projects, or projects that log in to the Semgrep Registry)
 
 
 ## Description of fields
@@ -171,16 +171,9 @@ This is a sample blob of the aggregate metrics described above:
 
 ## Registry fetches
 
-In order to build customized rule-sets for your project, we will send your
-project URL in _clear text_ to the Semgrep Registry server when running with
-`--config auto`.
-
-We do this to:
-- avoid hash collisions when constructing rule recommendations
-- improve our rule-recommendation engine when used with other open-source
-  projects
-- ensure a consistent rule-recommendation experience for Semgrep users using
-  Semgrep.dev to manage rules and results
+Certain Registry resources require log-in to the Semgrep Registry. Log in may be performed
+using your project URL, or a Semgrep.dev API token. When using these resources, your project's
+identity will be recorded by the Semgrep Registry servers.
 
 ## Data sharing
 

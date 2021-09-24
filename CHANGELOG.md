@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - HCL (a.k.a Terraform) experimental support
 - Added "automatic configuration" (`--config auto`), which collaborates with
   the Semgrep Registry to customize rules to a project; to support this, we
-  send the project's URL to the Semgrep Registry on rule fetch; in
+  add support for logging-in to the Registry using the project URL; in
   a future release, this will also perform project analysis to determine
   project languages and frameworks
 
